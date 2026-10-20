@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>i-DASH | RGCA Interior Design Supplies</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ============================ PUBLIC SHOWROOM ============================ -->
+<div id="showroom" class="showroom">
+  <header class="public-nav">
+    <div class="public-nav-inner">
+      <div class="brand">
+        <div class="brand-mark">iD</div>
+        <div>
+          <div class="brand-name">i-DASH</div>
+          <div class="brand-sub">RGCA Interior Design Supplies</div>
+        </div>
+      </div>
+      <button class="burger" id="burgerBtn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav class="public-links" id="publicLinks">
+        <button class="plink active" data-page="home">Home</button>
+        <button class="plink" data-page="track">Track Order</button>
+        <button class="plink" data-page="products">Products</button>
+        <button class="plink" data-page="contact">Contact Us</button>
+        <button class="btn-login" id="openLogin">Login</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="public-main">
+    <section class="ppage active" id="page-home">
+      <div class="hero">
+        <div class="hero-text">
+          <div class="hero-tag">CUSTOM WINDOW TREATMENTS & CABINETS</div>
+          <h1>Made-to-measure interiors,<br>crafted for your space.</h1>
+          <p>Window blinds, roller blinds, curtains, accordion doors, and modular cabinets — produced and installed by RGCA since 2018.</p>
+          <div class="hero-actions">
+            <button class="btn-black" onclick="Showroom.go('products')">Browse Products</button>
+            <button class="btn-outline" onclick="Showroom.go('contact')">Contact Us</button>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <div class="hero-stat"><span id="pubProducts">0</span><label>Products</label></div>
+          <div class="hero-stat"><span id="pubAds">0</span><label>On Sale</label></div>
+          <div class="hero-stat"><span id="pubNew">0</span><label>New</label></div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <h2>Featured Items</h2>
+        <button class="text-btn" onclick="Showroom.go('products')">View all →</button>
+      </div>
+      <div class="product-grid" id="featuredGrid"></div>
+
+      <div class="section-head">
+        <h2>New Arrivals</h2>
+        <button class="text-btn" onclick="Showroom.go('products')">View all →</button>
+      </div>
+      <div class="product-grid" id="newGrid"></div>
+    </section>
+
+    <section class="ppage" id="page-products">
+      <div class="page-head">
+        <h1>All Products</h1>
+        <p>Browse our full catalog of interior solutions.</p>
+      </div>
+      <div class="filter-bar">
+        <input type="search" id="pubSearch" placeholder="Search products…" />
+        <select id="pubCategory"><option value="">All categories</option></select>
+      </div>
+      <div class="product-grid" id="allGrid"></div>
+    </section>
+
+    <section class="ppage" id="page-contact">
+      <div class="page-head">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear about your project. Reach out and we'll respond within one business day.</p>
+      </div>
+      <div class="contact-grid">
+        <form class="contact-form" id="contactForm">
+          <label>Full Name<input id="cName" required /></label>
+          <label>Contact Number<input id="cPhone" required /></label>
+          <label>Email<input id="cEmail" type="email" /></label>
+          <label>Product Interest<input id="cInterest" placeholder="e.g. Roller Blinds, Modular Cabinet" /></label>
+          <label>Message<textarea id="cMessage" rows="4" placeholder="Tell us about your project…"></textarea></label>
+          <button class="btn-black" type="submit">Send Inquiry</button>
+        </form>
+        <div class="contact-info">
+          <div class="info-block"><div class="info-label">Location</div><div class="info-val">City of San Jose Del Monte, Bulacan, Philippines</div></div>
+          <div class="info-block"><div class="info-label">Business Hours</div><div class="info-val">Mon – Sat: 8:00 AM – 6:00 PM</div></div>
+          <div class="info-block"><div class="info-label">Products & Services</div><div class="info-val">Window Blinds · Roller Blinds · Curtains · Accordion Doors · Modular Cabinets · Installation</div></div>
+          <div class="info-block"><div class="info-label">Follow Us</div><div class="info-val">Facebook: /RGCASupplies</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ppage" id="page-track">
+      <div class="page-head">
+        <h1>Track My Order</h1>
+        <p>Enter your order number and the phone number used at checkout.</p>
+      </div>
+      <form id="trackForm" class="contact-form" style="max-width:520px">
+        <label>Order Number<input id="trackOrderNo" placeholder="ORD-YYYYMMDD-0001" required /></label>
+        <label>Phone Number<input id="trackPhone" placeholder="09xx-xxx-xxxx" required /></label>
+        <button class="btn-black" type="submit">Track</button>
+      </form>
+      <div id="trackResult" style="margin-top:16px"></div>
+    </section>
+  </main>
+
+  <footer class="public-footer"><div>© 2026 RGCA Interior Design Supplies · i-DASH v5.0</div></footer>
+</div>
+
+<!-- ============================ PRODUCT DETAIL ============================ -->
+<div class="product-detail" id="productDetail" hidden>
+  <div class="pd-topbar">
+    <button class="btn-back" id="pdBack">← Back</button>
+    <button class="btn-login" id="pdLogin">Staff Login</button>
+  </div>
+  <div id="pdContent"></div>
+</div>
+
+<!-- ============================ POPUP AD ============================ -->
+<div class="ad-popup-overlay" id="adPopup" hidden>
+  <div class="ad-popup" id="adPopupContent"></div>
+</div>
+
+<!-- ============================ LOGIN MODAL ============================ -->
+<div class="modal-overlay" id="loginModal" hidden>
+  <div class="modal login-modal">
+    <div class="login-left">
+      <div class="login-logo">iD</div>
+      <h2>i-DASH</h2>
+      <p>Inventory & Decision Analytics System for Home Interiors</p>
+    </div>
+    <form class="login-right" id="loginForm">
+      <h3>Staff Login</h3>
+      <label>Email<input id="loginEmail" type="email" required placeholder="you@rgca.ph" /></label>
+      <label>Password
+        <div class="pw-wrap">
+          <input id="loginPass" type="password" required placeholder="••••••••" />
+          <button type="button" class="pw-toggle" data-pw="loginPass" aria-label="Show password"></button>
+        </div>
+      </label>
+      <div id="loginError" class="login-error" hidden></div>
+      <button type="submit" class="btn-black full">Sign In</button>
+      <button type="button" class="btn-outline full" id="closeLogin">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============================ ADMIN PORTAL ============================ -->
+<div class="app" id="app" hidden>
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-brand">
+      <div class="brand-mark">iD</div>
+      <div class="sb-brand-text">
+        <div class="brand-name">i-DASH</div>
+        <div class="brand-sub" id="sbRoleLabel">Admin</div>
+      </div>
+    </div>
+    <nav class="sb-nav" id="sbNav"></nav>
+    <div class="sb-foot">
+      <div class="sb-user">
+        <div class="avatar" id="sbAvatar">A</div>
+        <div class="sb-user-info">
+          <div class="sb-user-name" id="sbUserName">Admin</div>
+          <div class="sb-user-role" id="sbUserRole">Administrator</div>
+        </div>
+      </div>
+      <button class="sb-logout" id="btnLogout">Sign Out</button>
+    </div>
+  </aside>
+
+  <div class="main-wrap">
+    <header class="topbar">
+      <button class="icon-btn" id="toggleSidebar" title="Toggle menu">☰</button>
+      <div class="global-search">
+        <span class="gs-icon">⌕</span>
+        <input id="globalSearch" placeholder="Search orders, products, or clients…" />
+        <div class="gs-results" id="gsResults" hidden></div>
+      </div>
+      <div class="topbar-right">
+        <button class="notif-btn" id="notifBtn" title="Notifications">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span class="notif-dot" id="notifDot" hidden></span>
+        </button>
+        <div class="tb-date" id="tbDate"></div>
+      </div>
+    </header>
+    <main class="content" id="content"></main>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+<div id="modalRoot"></div>
+<div id="printRoot" class="print-root"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+<script>window.QRCode || document.write('<script src="https://unpkg.com/qrcode@1.4.4/build/qrcode.min.js">\x3C/script>')</script>
+<script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script>window.Html5Qrcode || document.write('<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js">\x3C/script>')</script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script>window.jspdf || document.write('<script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js">\x3C/script>')</script>
+<script src="app.js"></script>
+</body>
+</html>
